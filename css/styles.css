@@ -1,0 +1,161 @@
+/*reset*/
+*{
+      padding; 0;
+      margin: 0;
+}
+body {
+      background-color: lightblue;
+      font-size: 18px;
+      width: 350px;
+}
+img {
+	max-width: 100%;
+#p {
+      align= middle;
+      font-size: 18px;
+}
+#game1-table-body{
+      width: 100%;
+      display: table-row-group;
+}
+.game1-table-col1{
+      display: table-cell;
+      align= left;
+      width: 5%;
+}
+#game1-introtext{
+      display: table-cell;
+      align= right;
+      width: 45%;
+      vertical-align: middle;
+      text-align: center;
+}
+.game1-table-col3{
+      display: table-cell;
+      align= left;
+      width: 5%;
+}
+#game1-img{
+      display: table-cell;
+      align= left;
+      width: 45%;
+      vertical-align: middle;
+}
+}
+
+@media screen and (min-width: 320px){
+body {
+      background-color: yellow;
+      font-size: 20px;
+      width: 430px;
+}
+#p {
+      align= middle;
+      font-size: 20px;
+}
+#game1-table-body{
+      width: 100%;
+      display: table-row-group;
+}
+.game1-table-col1{
+      display: table-cell;
+      align= left;
+      width: 5%;
+}
+#game1-introtext{
+      display: table-cell;
+      align= left;
+      width: 45%;
+      vertical-align: middle;
+      text-align: center;
+}
+.game1-table-col3{
+      display: table-cell;
+      align= left;
+      width: 5%;
+}
+#game1-img{
+      display: table-cell;
+      align= right;
+      width: 45%;
+      vertical-align: middle;
+}
+}
+
+@media screen and (min-width: 768px){
+body {
+      background-color: orange;
+      font-size: 24px;
+      width: 800px;
+}
+#p {
+      align= middle;
+      font-size: 24px;
+}
+#game1-table-body{
+      width: 100%;
+      display: table-row-group;
+}
+.game1-table-col1{
+      display: table-cell;
+      align= left;
+      width: 5%;
+}
+#game1-introtext{
+      display: table-cell;
+      align= left;
+      width: 45%;
+      vertical-align: middle;
+      text-align: center;
+}
+.game2-table-col3{
+      display: table-cell;
+      align= left;
+      width: 5%;
+}
+#game1-img{
+      display: table-cell;
+      align= right;
+      width: 45%;
+      vertical-align: middle;
+}
+}
+
+@media screen and (min-width: 960px){
+body {
+      width: 1225px;
+      background-color: lightgray;
+      font-size: 30px;
+}
+#p {
+      align= middle;
+      font-size: 24px;
+}
+#game1-table-body{
+      width: 100%;
+      display: table-row-group;
+}
+.game1-table-col1{
+      display: table-cell;
+      align= left;
+      width: 5%;
+}
+#game1-introtext{
+      display: table-cell;
+      align= left;
+      width: 45%;
+      vertical-align: middle;
+      text-align: center;
+}
+.game2-table-col3{
+      display: table-cell;
+      align= left;
+      width: 5%;
+}
+#game1-img{
+      display: table-cell;
+      align= right;
+      width: 45%;
+      vertical-align: middle;
+}
+}
