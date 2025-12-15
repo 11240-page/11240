@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Programming</title>
+<meta name="GENERATOR" content="Notepad">
+<meta name="Author" content="Stephen Moore">
+<meta name="KEYWORD" content="puzzle, brain game, grey binary, binary, logic puzzle, math puzzle, helicopter, gyro, gyroplane, gyrocopter, gyroglider, 
+aircraft, rotor, rotorcraft, click counter, inductor coils , inductance, inductor math, inductor design, inductor coils design, inductor coils math, 
+keyboard to morse code generator, windows keyboard to morse code generator, ms-dos keyboard to morse code generator, keyboard to morse code generator 
+with rs-232 transmitter keying, windows keyboard to morse code generator with rs-232 transmitter keying, ms-dos keyboard to morse code generator 
+with rs-232 transmitter keying, keyboard to cw generator with rs-232 transmitter keying, windows keyboard to cw generator with rs-232 transmitter keying,
+morse code, morse code generator, morse code app, morse code program, ms-dos program, windows program, ms-dos app, windows app, ms-dos morse code, 
+windows morse code, ms-dos morse code app, windows morse code app, ms-dos morse code generator, windows morse code generator, ms-dos morse code generator app, 
+windows morse code generator app, ms-dos morse code generator program, windows morse code generator program, rs232, rs232 port, rs232 serial port, 
+rs-232, rs-232 port, rs-232 serial port, serial port, serial port program, serial port app, rs232 app, rs232 program, rs-232 app, rs-232 program, 
+led, led control, led control app, led control program, ms-dos led control app, windows led control app, ms-dos led control program, windows led control program, 
+rs232 led control, rs232 led control app, rs232 led control program, rs-232 led control, rs-232 led control app, rs-232 led control program, ms-dos rs232 led, 
+ms-dos rs232 led control, ms-dos rs232 led control app, ms-dos rs232 led control program, ms-dos rs-232 led, ms-dos rs-232 led control, 
+ms-dos rs-232 led control app, ms-dos rs-232 led control program, windows rs232 led, windows rs232 led control, windows rs232 led control app, 
+windows rs232 led control program, windows rs-232 led, windows rs-232 led control, windows rs-232 led control app, windows rs-232 led control program,
+windows programming, ms-dos programming, windows programming source code, ms-dos programming source code, Download our software to convert keyboard input into 
+morse code signals and key your amateur radio transmitter via an RS-232 serial port connection">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+<h1 align="Middle">Controlling external LED's (or other devices) in Windows with RS-232 serial port</h1>
+<br>
+
+<nav class="navbar">
+    <ul class="nav-list">
+        <li class="dropdown">
+        <a href="../index.html">Home<font size="-2">▼</font></a>
+            <ul class="dropdown-menu">
+                <li><a href="../index.html#game">Brain game</a></li>
+                <li><a href="../index.html#proto">Prototype Brain game</a></li>
+                <li><a href="../index.html#count">Click Counter</a></li>
+                <li><a href="../index.html#book">Helicopter Handbook</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="../Amateur_Radio/Amateur_Radio_index.html">Amateur Radio<font size="-2">▼</font></a>
+            <ul class="dropdown-menu">
+                <li><a href="../Amateur_Radio/Get_Your_Amateur_Radio_License.html">Get Licensed</a></li>
+                <li><a href="../Amateur_Radio/Amateur_Radio_index.html#lmath">LMath</a></li>
+                <li><a href="../Amateur_Radio/Amateur_Radio_index.html#dos">MS-Dos Morse Code Generator</a></li>
+                <li><a href="../Amateur_Radio/Amateur_Radio_index.html#win">Windows Morse Code Generator</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="Programming_index.html">Programming<font size="-2">▼</font></a>
+            <ul class="dropdown-menu">
+                <li><a href="Programming_index.html#schematics">Schematics</a></li>
+                <li><a href="Programming_index.html#dos-1">MS-Dos LED Controller</a></li>
+                <li><a href="Programming_index.html#dos-3">MS-Dos 3 LED Controller</a></li>
+                <li><a href="Programming_index.html#win-1">Windows LED Controller</a></li>
+                <li><a href="Programming_index.html#win-3">Windows 3 LED Controller</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<br>
+<hr>
+<br>
+<h2 align="middle">Detailed RS-232 D-Sub 9 Pins Description</h2>
+<br>
+<div class="game1-table-body">
+<div class="game1-table-row">
+<div class="game1-table-col1">
+<p></p>
+</div>
+<div class="game1-introtext">
+<p class="p" align="left">
+&nbsp&nbsp&nbspIn most applications, <b>only pins 2, 3, 5</b> on the D-Sub 9 Pins connector is 
+used for the RS-232 application. This 3-wire communication mode is non-hardware-handshaking 
+or asynchronous data communication. Meaning that the serial data is sent out based on a 
+pre-set timing clock. (This is where USB came from.)
+The rest of the pins are meant for controlling the flow of the 
+data. Hardware handshaking (synchronous data communication) is slower. These are hardly 
+used these days because of the faster processing power of IC chips and the timing precision 
+that we have now. For most applications, you don&#8217;t need to wire up these wires. But 
+we will still be presenting the purpose of these pins on the D-sub connector for complete 
+documentation of the pin out.
+</p>
+<ul>
+<li><p class="p" align="left">Pin 1 DCD &#8211; Data Carrier Detect (IN), indicator signal is detected from the remote terminal (the other end of the terminal).</p></li>
+
+<li><p class="p" align="left">Pin 2 RXD &#8211; Received Data (IN), data coming in from the remote terminal.</p></li>
+
+<li><p class="p" align="left">Pin 3 TXD &#8211; Transmitted Data (OUT), data sending out to the remote terminal.</p></li>
+
+<li><p class="p" align="left">Pin 4 DTR &#8211; Data Terminal Ready (OUT), local terminal side is ready to receive data.</p></li>
+
+<li><p class="p" align="left">Pin 5 GND &#8211; Signal Ground (COMMON), reference pin for all the signal pins.</p></li>
+
+<li><p class="p" align="left">Pin 6 DSR &#8211; Data Set Ready (IN), remote terminal is ready to receive and send data.</p></li>
+
+<li><p class="p" align="left">Pin 7 RTS &#8211; Request To Send (OUT), the local terminal is requesting the remote terminal to send over data.</p></li>
+
+<li><p class="p" align="left">Pin 8 CTS &#8211; Clear To Send (IN), remote terminal is ready to receive data.</p></li>
+
+<li><p class="p" align="left">Pin 9 RI &#8211; Ring Indicator (IN), the local terminal receives the ring from remote terminal.</p></li>
+</ul>
+<br>
+<p class="p" align="left">USB is for microprocessor to microprocessor comunication only.</p>
+<br>
+<p class="p" align="left">I'm using the RS-232 hardware handshaking pins to control outputs.</p>
+</div>
+<div class="game2-table-col3">
+<p></p>
+</div>
+<div class="game2-table-col3">
+<p></p>
+</div>
+</div>
+</div>
+<br>
+<hr>
+<br>
+<h3 align="middle">Getting a RS-232 Serial Port on your computer.</h3>
+<br>
+<div class="game1-table-body">
+<div class="game1-table-row">
+<div class="game1-table-col1">
+<p></p>
+</div>
+<div class="game1-introtext">
+<p class="p" align="left">&nbsp&nbsp&nbspIt used to be that all motherboards came with a printer port and serial 
+    port built in. Now a days everything is USB. So you need to get a USB to Serial port adapter to get a RS-232 
+    port. What I have is a Prolific PL2303TA USB-to-Serial Comm Port. It is for Windows 10 only. Won't work on 
+    Windows 11. So Windows 11 made it obsolete and have to buy someting new. 
+</p>
+<br>
+</div>
+<div class="game2-table-col3">
+<p></p>
+</div>
+<div class="game1-img">
+<img align="left" src="../img/Prolific_PL2303TA_USB-to-Serial.png" alt="Prolific PL2303TA USB-to-Serial Port">
+</div>
+</div>
+</div>
+<br>
+<hr>
+<br>
+<h3 align="middle">Windows 11 RS-232 Serial Port.</h3>
+<br>
+<div class="game1-table-body">
+<div class="game1-table-row">
+<div class="game1-table-col1">
+<p></p>
+</div>
+<div class="game1-introtext">
+<p class="p" align="left">&nbsp&nbsp&nbspI don't have access to a Windows 11 computer, but my daughter does 
+    so I went ahead and bought this OIKWAN FTDI USB to serial adapter that is supposed to work with Windows 
+    11. She couldn't get it to install the drivers it needs. Another thing I noticed when using it on Win 10, 
+    when you close the port the pins stay active and do not reset. You have unplug the USB to reset it. The 
+    Prolific resets when you close the port. I sure hope I cease to exist before being forced to convert to 
+    Windows 11. Everything I've heard about it says that it is garbage.
+</p>
+<br>
+</div>
+<div class="game2-table-col3">
+<p></p>
+</div>
+<div class="game1-img">
+<img align="left" src="../img/OIKWAN_FTDI_USB-to-Serial.png" alt="OIKWAN FTDI USB-to-Serial Port">
+</div>
+</div>
+</div>
+<br>
+<hr>
+<br>
+<h3 align="middle" id="schematics">Schematic's</h3>
+<br>
+<div class="game1-table-body">
+<div class="game1-table-row">
+<div class="game1-table-col1">
+<p></p>
+</div>
+<div class="game1-introtext">
+<p class="p" align="left">&nbsp&nbsp&nbspHow to wire up the DB-9 connector 
+for use with the 1 LED Controllers.
+</p>
+<br>
+</div>
+<div class="game2-table-col3">
+<p></p>
+</div>
+<div class="game1-img">
+<img align="left" src="../img/schematic-1_LED.png" alt="1 LED Schematic">
+</div>
+</div>
+</div>
+<br>
+<div class="game1-table-body">
+<div class="game1-table-row">
+<div class="game1-table-col1">
+<p></p>
+</div>
+<div class="game1-introtext">
+<p class="p" align="left">&nbsp&nbsp&nbspHow to wire up the DB-9 connector 
+for use with the 3 LED Controllers.
+</p>
+<br>
+</div>
+<div class="game2-table-col3">
+<p></p>
+</div>
+<div class="game1-img">
+<img align="left" src="../img/schematic-3_LED.png" alt="3 LED Schematic">
+</div>
+</div>
+</div>
+<br>
+<br>
+<div class="game1-table-body">
+<div class="game1-table-row">
+<div class="game1-table-col1">
+<p></p>
+</div>
+<div class="game1-introtext">
+<p class="p" align="left">&nbsp&nbsp&nbspHow to wire up the DB-9 connector 
+for use with the Morse Code Generators.
+</p>
+<br>
+</div>
+<div class="game2-table-col3">
+<p></p>
+</div>
+<div class="game1-img">
+<img align="left" src="../img/schematic-key.png" alt="Keying Schematic">
+</div>
+</div>
+</div>
+<br>
+<p align="center"><font size="-2"><a href="Programming_index.html">Back to the top</a></font></p>
+<hr>
+<br>
+<h3 align="middle" id="dos-1">MS-Dos LED Controller using RS-232</h3>
+<br>
+<div class="game1-table-body">
+<div class="game1-table-row">
+<div class="game1-table-col1">
+<p></p>
+</div>
+<div class="game1-introtext">
+<p class="p" align="left">&nbsp&nbsp&nbspA simple program to toggle the LED on/off. The majority of the program 
+    is for selecting the serial port to use. When the program first opens, it asks for the port number. If the 
+    port opens it continues on to the command characters input. If the program come back with the port doesn't 
+    exist it exits. It uses the 't' to toggle the LED on/off and the 'x' to exit the program. It uses the TXD pin(3)
+    of the <a href="../img/schematic-1_LED.png" target="new">db-9 connector</a> for the LED.
+</p>
+<p class="p" align="middle"><i>It's for Windows command line</i>.</p>
+<br>
+</div>
+<div class="game2-table-col3">
+<p></p>
+</div>
+<div class="game1-img">
+<a href="MS-Dos_LED_Controller.exe" target="download">
+<img align="left" src="../img/MS-Dos_LED_Controller.png" alt="MS-Dos LED Controller using RS-232">
+</a>
+</div>
+</div>
+</div>
+<p class="p" align="middle">Download <a href="MS-Dos_LED_Controller.exe" target="download">MS-Dos LED Controller</a></p>
+<p class="p" align="middle">Download <a href="MS-Dos_LED_Controller(source_code).c" target="download">MS-Dos LED Controller (source code)</a></p>
+<br>
+<p align="center"><font size="-1"><a href="Programming_index.html">Back to the top</a></font></p>
+<hr>
+<br>
+<h3 align="middle" id="dos-3">MS-Dos 3 LED Controller using RS-232</h3>
+<br>
+<div class="game1-table-body">
+<div class="game1-table-row">
+<div class="game1-table-col1">
+<p></p>
+</div>
+<div class="game1-introtext">
+<p class="p" align="left">&nbsp&nbsp&nbspA simple program to toggle the LED's on/off. The majority of the program 
+    is for selecting the serial port to use. When the program first opens, it asks for the port number. If the 
+    port opens it continues on to the command characters input. If the program come back with the port doesn't 
+    exist it exits.<br>Commands</p>
+<ul>
+    <li><p class="p" align="left">d: toggle the DTR LED(pin 4) on/off</li></p>
+    <li><p class="p" align="left">r: toggle the RTS LED(pin 7) on/off</li></p>
+    <li><p class="p" align="left">t: toggle the TXD LED(pin 3) on/off</li></p>
+    <li><p class="p" align="left">x: exit the program.</li></p>
+</ul>
+<p class="p" align="left">Pin numbers are for the <a href="../img/schematic-3_LED.png" target="new">db-9 connector</a>.
+<p class="p" align="middle"><i>It's for Windows command line.</i></center></p>
+<br>
+</div>
+<div class="game2-table-col3">
+<p></p>
+</div>
+<div class="game1-img">
+<a href="MS-Dos_3_LED_Controller.exe" target="download">
+<img align="left" src="../img/MS-Dos_3_LED_Controller.png" alt="MS-Dos 3 LED Controller using RS-232">
+</a>
+</div>
+</div>
+</div>
+<p class="p" align="middle">Download <a href="MS-Dos_3_LED_Controller.exe" target="download">MS-Dos 3 LED Controller</a></p>
+<p class="p" align="middle">Download <a href="MS-Dos_3_LED_Controller(source_code).c" target="download">MS-Dos 3 LED Controller (source code)</a></p>
+<br>
+<p align="center"><font size="-1"><a href="Programming_index.html">Back to the top</a></font></p>
+<hr>
+<br>
+<h3 align="middle" id="win-1">Windows LED Controller using RS-232</h3>
+<br>
+<div class="game1-table-body">
+<div class="game1-table-row">
+<div class="game1-table-col1">
+<p></p>
+</div>
+<div class="game1-introtext">
+<p class="p" align="left">&nbsp&nbsp&nbspA simple program to toggle the LED on/off. The majority of the program 
+    is for selecting the serial port to use. It has a button to open a dialog window with a dropdown list box to 
+    select what port number to use. The color of the button indicates if the port is good or not. And three 
+    buttons to toggle the LED's on/off. The button colors indicate the status of the LED is. It uses the TXD pin(3) 
+    of the <a href="../img/schematic-1_LED.png" target="new">db-9 connector</a> for the LED.
+</p>
+<p class="p" align="middle"><i>It's for Windows.</i></p>
+<br>
+</div>
+<div class="game2-table-col3">
+<p></p>
+</div>
+<div class="game1-img">
+<a href="Windows_LED_Controller.exe" target="download">
+<img align="left" src="../img/Windows_LED_Controller.png" alt="Windows LED Controller using RS-232">
+</a>
+</div>
+</div>
+</div>
+<p class="p" align="middle">Download <a href="Windows_LED_Controller.exe" target="download">Windows LED Controller</a></p>
+<p class="p" align="middle">Download <a href="Windows_LED_Controller(source_code).zip" target="download">Windows LED Controller (source code)</a></p>
+<br>
+<p class="p" align="middle"><font size="-1"><a href="Programming_index.html">Back to the top</a></font></p>
+<hr>
+<br>
+<h3 align="middle" id="win-3">Windows 3 LED Controller using RS-232</h3>
+<br>
+<div class="game1-table-body">
+<div class="game1-table-row">
+<div class="game1-table-col1">
+<p></p>
+</div>
+<div class="game1-introtext">
+<p class="p" align="left">&nbsp&nbsp&nbspA simple program to toggle the 3 LED's on/off. The majority of the program 
+    is for selecting the serial port to use. It has a button to open a dialog window with a dropdown list box to 
+    select what port number to use. The color of the button indicates if the port is good or not. And three 
+    buttons to toggle the LED's on/off. The button colors indicate the status of the LED is.</p>
+<ul>
+    <li><p class="p" align="left">Pin 3: TXD LED</p></li> 
+    <li><p class="p" align="left">Pin 4: DTR LED</p></li>
+    <li><p class="p" align="left">Pin 7: RST LED</p></li>
+</ul>
+<p class="p" align="left">Pin numbers are for the <a href="../img/schematic-3_LED.png" target="new">db-9 connector</a>.
+<p class="p" align="middle"><i>It's for Windows.</i></p>
+<br>
+</div>
+<div class="game2-table-col3">
+<p></p>
+</div>
+<div class="game1-img">
+<a href="Windows_3_LED_Controller.exe" target="download">
+<img align="left" src="../img/Windows_3_LED_Controller.png" alt="Windows 3 LED Controller using RS-232">
+</a>
+</div>
+</div>
+</div>
+<p class="p" align="middle">Download <a href="Windows_3_LED_Controller.exe" target="download">Windows 3 LED Controller</a></p>
+<p class="p" align="middle">Download <a href="Windows_3_LED_Controller(source_code).zip" target="download">Windows 3 LED Controller (source code)</a></p>
+<br>
+<p class="p" align="middle"><font size="-1"><a href="Programming_index.html">Back to the top</a></font></p>
+<hr>
+<br>
+</body >
+</html >
